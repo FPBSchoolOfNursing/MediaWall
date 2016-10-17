@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1A5BC953-940A-4C61-A695-BEC44BA7070C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8881035D-85D0-42D9-9189-37598A29855E}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MediaWall", "src\MediaWall\MediaWall.xproj", "{E8DB73C7-FB45-45F5-BB9A-44FF148CB152}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E8DB73C7-FB45-45F5-BB9A-44FF148CB152}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8DB73C7-FB45-45F5-BB9A-44FF148CB152}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8DB73C7-FB45-45F5-BB9A-44FF148CB152}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8DB73C7-FB45-45F5-BB9A-44FF148CB152}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E8DB73C7-FB45-45F5-BB9A-44FF148CB152} = {1A5BC953-940A-4C61-A695-BEC44BA7070C}
+	EndGlobalSection
+EndGlobal
