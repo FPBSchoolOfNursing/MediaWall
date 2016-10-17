@@ -1,0 +1,56 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@section styles {
+    <style>
+    .grid-item {
+        width: 330px;
+          height: 120px;
+          float: left;
+          background: #D26;
+          border: 2px solid #333;
+          border-color: hsla(0, 0%, 0%, 0.5);
+          border-radius: 5px;    
+          margin-bottom: 10px;   
+          user-select: none;
+          -webkit-user-select: none;
+          cursor: pointer;
+    }
+    </style>
+}
+
+<h1>Alumni</h1>
+<div class="grid">
+    <div class="grid-item">1</div>
+    <div class="grid-item">2</div>  
+    <div class="grid-item">3</div>
+    <div class="grid-item">4</div>
+    <div class="grid-item">5</div>  
+</div>
+@section scripts {
+    
+<environment names="Development">
+    <script src="~/lib/masonry/dist/masonry.pkgd.js"></script>
+</environment>
+
+<environment names="Staging,Production">
+    <script src="https://unpkg.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
+</environment>
+
+
+    <script>
+        $(function () {
+            console.log($.fn.jquery);
+
+            $('.grid').masonry({
+                // options...
+                itemSelector: '.grid-item',
+                columnWidth: 330,
+                gutter: 10
+            });
+        });
+    </script>
+}
