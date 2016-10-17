@@ -6,7 +6,9 @@
     <title>@ViewData["Title"] - MediaWall</title>
 
     <environment names="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link href="~/lib/tether/dist/css/tether.css" rel="stylesheet" /> 
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />       
+       
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
 
@@ -15,6 +17,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link href="~/lib/tether/dist/css/tether.css" rel="stylesheet" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
 </head>
@@ -51,11 +54,18 @@
     </div>
 
     <environment names="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/lib/tether/dist/js/tether.js"></script>
+        <script src="~/lib/jquery/dist/jquery.js"></script>        
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>              
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
+    
     <environment names="Staging,Production">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js"
+                asp-fallback-src="~/lib/tether/dist/js/tether.js"
+                asp-fallback-test="window.Tether">
+        </script>
+
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.1.1.min.js"
                 asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
                 asp-fallback-test="window.jQuery">
@@ -64,6 +74,7 @@
                 asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
                 asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
         </script>
+        
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
 
