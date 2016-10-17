@@ -6,8 +6,11 @@
 
 @section styles {
     <style>
+        body{
+            background: #626262;
+        }
     .grid-item {
-        width: 330px;
+        width: 280px;
           height: 120px;
           float: left;
           background: #D26;
@@ -18,6 +21,7 @@
           user-select: none;
           -webkit-user-select: none;
           cursor: pointer;
+          text-align: center;
     }
     </style>
 }
@@ -48,7 +52,7 @@
             $('.grid').masonry({
                 // options...
                 itemSelector: '.grid-item',
-                columnWidth: 330,
+                columnWidth: 280,
                 gutter: 10
             });
         });
