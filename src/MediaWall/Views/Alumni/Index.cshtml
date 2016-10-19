@@ -6,54 +6,131 @@
 
 @section styles {
     <style>
+        h1{ color: rgb(98,98,98); }
         body{
-            background: #626262;
+            background: #0a304e;
+            /*background: #626262;*/
         }
-    .grid-item {
-        width: 280px;
-          height: 120px;
-          float: left;
-          background: #D26;
-          border: 2px solid #333;
-          border-color: hsla(0, 0%, 0%, 0.5);
-          border-radius: 5px;    
-          margin-bottom: 10px;   
-          user-select: none;
-          -webkit-user-select: none;
-          cursor: pointer;
-          text-align: center;
-    }
+
+        .grid {
+            margin-bottom: 2em; /* allow some scroll space to allow grid items to appear above the navbar.*/
+        }
+
+        .grid-item {
+            float: left;          
+            margin-bottom: 2em;
+            user-select: none;
+            -webkit-user-select: none;
+            
+
+            -webkit-box-shadow: 0px 0px 40px 6px rgba(98,98,98,0.88);
+            -moz-box-shadow: 0px 0px 40px 6px rgba(98,98,98,0.88);
+            box-shadow: 0px 0px 40px 6px rgba(98,98,98,0.88);
+        }
+        img.thumbnail {
+            width: 336px;
+        }
+        .grid-item figure
+        {
+            cursor: pointer;
+            margin-bottom: 0;
+        }
+        .grid-item figure figcaption {
+            background: #bfbfbf;
+            padding: 10px;
+            color: #0a304e;
+            cursor: default;
+        }
+        #filterbtn {margin-bottom:32px;}
     </style>
 }
 
 <h1>Alumni</h1>
+<button id="filterbtn" class="btn btn-default">Filter</button>
+
 <div class="grid">
-    <div class="grid-item">1</div>
-    <div class="grid-item">2</div>  
-    <div class="grid-item">3</div>
-    <div class="grid-item">4</div>
-    <div class="grid-item">5</div>  
+    <div class="grid-item odditem">
+        <figure>
+            <a href="~/images/Wall/1907Wall.jpg" title="Class of 1907"><img class="thumbnail" src="~/images/Thumbnails/1907Thumb.jpg" /> </a>
+            <figcaption>Class of 1907</figcaption>
+        </figure>
+    </div>
+    <div class="grid-item evenitem">
+        <figure>
+            <a href="~/images/Wall/1929Wall.jpg" title="Class of 1929"><img class="thumbnail" src="~/images/Thumbnails/1929Thumb.jpg" /></a>
+            <figcaption>Class of 1929</figcaption>
+        </figure>
+    </div>
+    <div class="grid-item odditem">
+        <figure>
+            <a href="~/images/Wall/1974Wall.jpg" title="Class of 1974"><img class="thumbnail" src="~/images/Thumbnails/1974Thumb.jpg" /></a>
+            <figcaption>Class of 1974</figcaption>
+        </figure>
+    </div>       
+
+    <div class="grid-item evenitem">
+        <figure>
+            <a href="~/images/Wall/2003-2004-Grad-Wall.jpg" title="Class of 2003-2004 Graduates"><img class="thumbnail" src="~/images/Thumbnails/2003-2004-Grad-Thumb.jpg" /></a>
+            <figcaption>Class of 2003-2004 Graduates</figcaption>
+        </figure>
+    </div>
+    <div class="grid-item odditem">
+        <figure>
+            <a href="~/images/Wall/2004-2005-BSN-Wall.jpg" title="Class of 2004-2005 BSN"><img src="~/images/Thumbnails/2004-2005-BSN-Thumb.jpg" /></a>
+            <figcaption>Class of 2004-2005 BSN</figcaption>
+        </figure>
+        
+    </div>
+    <div class="grid-item imageitem">
+        <figure>
+            <a href="~/images/Wall/2004-2005-Grad-Wall.jpg" title="Class of 2004-2005 Graduates"><img src="~/images/Thumbnails/2004-2005-Grad-Thumb.jpg" /></a>
+            <figcaption>Class of 2004-2005 Graduates</figcaption>
+        </figure>        
+    </div>
 </div>
 @section scripts {
-    
+   
 <environment names="Development">
-    <script src="~/lib/masonry/dist/masonry.pkgd.js"></script>
+    
+    <script src="~/lib/isotope/dist/isotope.pkgd.js"></script>
 </environment>
 
-<environment names="Staging,Production">
-    <script src="https://unpkg.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
+<environment names="Staging,Production">    
+    <script src="https://unpkg.com/isotope-layout@3.0/dist/isotope.pkgd.min.js"></script>
 </environment>
-
+<script src="~/lib/isotope-fit-columns/fit-columns.js"></script>
 
     <script>
+        
         $(function () {
             console.log($.fn.jquery);
 
-            $('.grid').masonry({
+            $('.grid').isotope({
                 // options...
-                itemSelector: '.grid-item',
-                columnWidth: 280,
-                gutter: 10
+                itemSelector: '.grid-item',               
+                layoutMode: 'masonry',
+                masonry: {
+                    columnWidth: 336,
+                    gutter: 32                
+                }               
+            });
+
+            $("#filterbtn").click(function () {               
+                $(this).toggleClass("active");
+
+                if ( $(this).hasClass("active") ) {
+                    $('.grid').isotope({ filter: '.evenitem' });                    
+                } else {
+                    $('.grid').isotope({ filter: '*' });                    
+                }
+            });
+
+            $(".grid-item figure a").click(function (e) {               
+                e.preventDefault();
+                var href = $(this).attr("href");
+                console.log(href);
+
+
             });
         });
     </script>
