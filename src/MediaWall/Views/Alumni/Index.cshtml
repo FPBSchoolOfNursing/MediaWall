@@ -25,7 +25,8 @@
 
             -webkit-box-shadow: 0px 0px 40px 6px rgba(98,98,98,0.88);
             -moz-box-shadow: 0px 0px 40px 6px rgba(98,98,98,0.88);
-            box-shadow: 0px 0px 40px 6px rgba(98,98,98,0.88);
+            box-shadow: 0px 0px 40px 6px rgba(98,98,98,0.88);
+
         }
         img.thumbnail {
             width: 336px;
@@ -89,6 +90,25 @@
         </figure>        
     </div>
 </div>
+
+<div id="imagemodal" class="modal fade">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <img id="classimg" class="img-fluid" src="" alt="" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>              
+            </div>
+        </div>
+    </div>
+</div>
 @section scripts {
    
 <environment names="Development">
@@ -104,7 +124,7 @@
     <script>
         
         $(function () {
-            console.log($.fn.jquery);
+            $('[data-toggle="tooltip"]').tooltip()
 
             $('.grid').isotope({
                 // options...
@@ -126,12 +146,15 @@
                 }
             });
 
+            //On a picture click 
             $(".grid-item figure a").click(function (e) {               
                 e.preventDefault();
                 var href = $(this).attr("href");
-                console.log(href);
-
-
+                var title = $(this).attr("title");
+               
+                $("#imagemodal").find(".modal-title").html(title);
+                $("#imagemodal").find("#classimg").attr("src", href).attr("alt", "Alt image");
+                $("#imagemodal").modal('show');
             });
         });
     </script>
