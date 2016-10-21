@@ -55,8 +55,8 @@
 <h1>Alumni</h1>
 
 <div id="actionbtns" class="btn-group" role="group" aria-label="Filtering buttons">
-    <button type="button" id="filter1950btn" class="btn btn-secondary">1950</button>
-    <button type="button" id="filter1970btn" class="btn btn-secondary">1970</button>
+    <button type="button" class="btn btn-secondary filterbtn" data-low-year-filter="1950" data-high-year-filter="1960">1950</button>
+    <button type="button" class="btn btn-secondary filterbtn" data-low-year-filter="1970" data-high-year-filter="1980">1970</button>
     <button type="button" id="datesortbtn" class="btn btn-secondary">Date Sort</button>
     <button type="button" id="randomizebtn" class="btn btn-secondary">Shuffle</button>
 </div>
@@ -166,10 +166,8 @@
 </environment>
 <script src="~/lib/isotope-fit-columns/fit-columns.js"></script>
 
-    <script>
-        
-        $(function () {
-            
+    <script>        
+        $(function () {            
             var $grid = $('.grid').isotope({
                 // options...
                 itemSelector: '.grid-item',               
@@ -186,35 +184,37 @@
                 }
             });
 
-            $("#filter1950btn").click(function () {
+            $(".filterbtn").click(function () {                
                 $(this).toggleClass("active");
 
-                if ( $(this).hasClass("active") ) {
+
+                if ($(this).hasClass("active")) {
+                    var lowYearFilter = $(this).data("low-year-filter");
+                    lowYearFilter = parseInt(lowYearFilter);
+
+                    var highYearFilter = $(this).data("high-year-filter");
+                    highYearFilter = parseInt(highYearFilter);
+
+                    console.log(lowYearFilter, highYearFilter);
+
                     $grid.isotope({
                         filter: function () {
-                            var datefilter = $(this).data("datesort");
+                            var datefilter = $(this).data("datesort"); //note this changes scope
                             var dates = new Date(datefilter);                           
-                            var year = dates.getFullYear();
-                            return (year >= 1950 && year < 1960);
+                            var year = dates.getFullYear();                          
+                            
+                            if(lowYearFilter > 0) {
+                                if (highYearFilter > 0) {
+                                    return (year >= lowYearFilter && year < highYearFilter);
+                                }
+                                return (year >= lowYearFilter);
+                            }
+                            return '*';
                         }
                     });
                 } else {
                     $grid.isotope({ filter: '*' });
                 }
-            });
-
-
-            $("#filter1970btn").click(function () {
-                $(this).toggleClass("active");
-
-                $grid.isotope({
-                    filter: function () {
-                        var datefilter = $(this).data("datesort");
-                        var dates = new Date(datefilter);
-                        var year = dates.getFullYear();
-                        return (year >= 1970 && year < 1980);
-                    }
-                });
             });
 
             $("#datesortbtn").click(function () {
