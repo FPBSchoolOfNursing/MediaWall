@@ -13,7 +13,7 @@
         }
 
         .grid {
-            margin-bottom: 2em; /* allow some scroll space to allow grid items to appear above the navbar.*/
+            margin: 2em 0; /* allow some scroll space to allow grid items to appear above the navbar.*/
         }
 
         .grid-item {
@@ -28,9 +28,14 @@
             box-shadow: 0px 0px 40px 6px rgba(98,98,98,0.88);
 
         }
-        img.thumbnail {
-            width: 336px;
+        img.thumbnail-vertical {
+            width: 300px;
         }
+
+        img.thumbnail-horizontal {
+            width: 450px;
+        }
+
         .grid-item figure
         {
             cursor: pointer;
@@ -43,52 +48,92 @@
             cursor: default;
             border-top: 0.1em solid #0a304e;
         }
-        #filterbtn {margin-bottom:32px;}
+        #actionbtns {}
     </style>
 }
 
 <h1>Alumni</h1>
-<button id="filterbtn" class="btn btn-default">Filter</button>
+
+<div id="actionbtns" class="btn-group" role="group" aria-label="Filtering buttons">
+    <button type="button" id="filter1950btn" class="btn btn-secondary">1950</button>
+    <button type="button" id="filter1970btn" class="btn btn-secondary">1970</button>
+    <button type="button" id="datesortbtn" class="btn btn-secondary">Date Sort</button>
+    <button type="button" id="randomizebtn" class="btn btn-secondary">Shuffle</button>
+</div>
+
+
 
 <div class="grid">
-    <div class="grid-item odditem">
+    <div class="grid-item" data-datesort="1/1/1907">
         <figure>
-            <a href="~/images/Wall/1907Wall.jpg" title="Class of 1907"><img class="thumbnail" src="~/images/Thumbnails/1907Thumb.jpg" /> </a>
+            <a href="~/images/Wall/1907Wall.jpg" title="Class of 1907"><img class="thumbnail-vertical" src="~/images/Thumbnails/1907Thumb.jpg" /> </a>
             <figcaption>Class of 1907</figcaption>
         </figure>
     </div>
-    <div class="grid-item evenitem">
+
+    <div class="grid-item" data-datesort="1/1/1952">
         <figure>
-            <a href="~/images/Wall/1929Wall.jpg" title="Class of 1929"><img class="thumbnail" src="~/images/Thumbnails/1929Thumb.jpg" /></a>
+            <a href="~/images/Wall/1952Wall.jpg" title="Class of 1952"><img class="thumbnail-horizontal" src="~/images/Thumbnails/1952Thumb.jpg" /></a>
+            <figcaption>Class of 1952</figcaption>
+        </figure>
+    </div>
+
+    <div class="grid-item evenitem" data-datesort="1/1/1929">
+        <figure>
+            <a href="~/images/Wall/1929Wall.jpg" title="Class of 1929"><img class="thumbnail-vertical" src="~/images/Thumbnails/1929Thumb.jpg" /></a>
             <figcaption>Class of 1929</figcaption>
         </figure>
     </div>
-    <div class="grid-item odditem">
+    <div class="grid-item odditem" data-datesort="1/1/1974">
         <figure>
-            <a href="~/images/Wall/1974Wall.jpg" title="Class of 1974"><img class="thumbnail" src="~/images/Thumbnails/1974Thumb.jpg" /></a>
+            <a href="~/images/Wall/1974Wall.jpg" title="Class of 1974"><img class="thumbnail-vertical" src="~/images/Thumbnails/1974Thumb.jpg" /></a>
             <figcaption>Class of 1974</figcaption>
         </figure>
     </div>       
 
-    <div class="grid-item evenitem">
+    <div class="grid-item evenitem" data-datesort="1/2/2003">
         <figure>
-            <a href="~/images/Wall/2003-2004-Grad-Wall.jpg" title="Class of 2003-2004 Graduates"><img class="thumbnail" src="~/images/Thumbnails/2003-2004-Grad-Thumb.jpg" /></a>
+            <a href="~/images/Wall/2003-2004-Grad-Wall.jpg" title="Class of 2003-2004 Graduates"><img class="thumbnail-vertical" src="~/images/Thumbnails/2003-2004-Grad-Thumb.jpg" /></a>
             <figcaption>Class of 2003-2004 Graduates</figcaption>
         </figure>
     </div>
-    <div class="grid-item odditem">
+
+    <div class="grid-item evenitem" data-datesort="1/1/1951">
+        <figure>            
+            <a href="~/images/Wall/1951Wall.jpg" title="Class of 1951"><img class="thumbnail-horizontal" src="~/images/Thumbnails/1951Thumb.jpg" /></a>
+            <figcaption>Class of 1951</figcaption>
+        </figure>
+    </div>
+
+
+    <div class="grid-item odditem" data-datesort="1/1/2004">
         <figure>
-            <a href="~/images/Wall/2004-2005-BSN-Wall.jpg" title="Class of 2004-2005 BSN"><img src="~/images/Thumbnails/2004-2005-BSN-Thumb.jpg" /></a>
+            <a href="~/images/Wall/2004-2005-BSN-Wall.jpg" title="Class of 2004-2005 BSN"><img class="thumbnail-vertical" src="~/images/Thumbnails/2004-2005-BSN-Thumb.jpg" /></a>
             <figcaption>Class of 2004-2005 BSN</figcaption>
         </figure>
         
     </div>
-    <div class="grid-item imageitem">
+    <div class="grid-item imageitem" data-datesort="1/2/2004">
         <figure>
-            <a href="~/images/Wall/2004-2005-Grad-Wall.jpg" title="Class of 2004-2005 Graduates"><img src="~/images/Thumbnails/2004-2005-Grad-Thumb.jpg" /></a>
+            <a href="~/images/Wall/2004-2005-Grad-Wall.jpg" title="Class of 2004-2005 Graduates"><img class="thumbnail-vertical" src="~/images/Thumbnails/2004-2005-Grad-Thumb.jpg" /></a>
             <figcaption>Class of 2004-2005 Graduates</figcaption>
         </figure>        
     </div>
+
+    <div class="grid-item" data-datesort="1/1/1955">
+        <figure>
+            <a href="~/images/Wall/1955Wall.jpg" title="Class of 1955"><img class="thumbnail-horizontal" src="~/images/Thumbnails/1955Thumb.jpg" /></a>
+            <figcaption>Class of 1955</figcaption>
+        </figure>
+    </div>
+
+    <div class="grid-item" data-datesort="1/1/1975">
+        <figure>
+            <a href="~/images/Wall/1975Wall.jpg" title="Class of 1975"><img class="thumbnail-horizontal" src="~/images/Thumbnails/1975Thumb.jpg" /></a>
+            <figcaption>Class of 1975</figcaption>
+        </figure>
+    </div>
+
 </div>
 
 <div id="imagemodal" class="modal fade">
@@ -124,27 +169,64 @@
     <script>
         
         $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-
-            $('.grid').isotope({
+            
+            var $grid = $('.grid').isotope({
                 // options...
                 itemSelector: '.grid-item',               
                 layoutMode: 'masonry',
                 masonry: {
-                    columnWidth: 336,
-                    gutter: 32                
-                }               
+                    columnWidth: 150, //LCD of 300 and 450
+                    gutter: 16
+                },
+                getSortData: {
+                    date: function (el) {
+                        var strdate = $(el).data("datesort");
+                        return new Date(strdate);
+                    }
+                }
             });
 
-            $("#filterbtn").click(function () {               
+            $("#filter1950btn").click(function () {
                 $(this).toggleClass("active");
 
                 if ( $(this).hasClass("active") ) {
-                    $('.grid').isotope({ filter: '.evenitem' });                    
+                    $grid.isotope({
+                        filter: function () {
+                            var datefilter = $(this).data("datesort");
+                            var dates = new Date(datefilter);                           
+                            var year = dates.getFullYear();
+                            return (year >= 1950 && year < 1960);
+                        }
+                    });
                 } else {
-                    $('.grid').isotope({ filter: '*' });                    
+                    $grid.isotope({ filter: '*' });
                 }
             });
+
+
+            $("#filter1970btn").click(function () {
+                $(this).toggleClass("active");
+
+                $grid.isotope({
+                    filter: function () {
+                        var datefilter = $(this).data("datesort");
+                        var dates = new Date(datefilter);
+                        var year = dates.getFullYear();
+                        return (year >= 1970 && year < 1980);
+                    }
+                });
+            });
+
+            $("#datesortbtn").click(function () {
+                $grid.isotope({ sortBy: 'date' });                
+            });
+
+            $("#randomizebtn").click(function () {
+                $(this).removeClass('active'); //we don't want the button press state to stick. 
+
+                $grid.isotope('shuffle');               
+            });
+
 
             //On a picture click 
             $(".grid-item figure a").click(function (e) {               
