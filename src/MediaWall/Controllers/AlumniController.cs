@@ -10,6 +10,7 @@ namespace MediaWall.Controllers
 {
     public class AlumniController : Controller
     {
+        
         // GET: /<controller>/
         public IActionResult Index()
         {

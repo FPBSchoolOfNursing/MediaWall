@@ -1,11 +1,11 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-
+using MediaWall.DAL.Interfaces;
 
 namespace MediaWall.Models
 {
-    public partial class AlumniContext : DbContext
+    public partial class AlumniContext : DbContext, IAlumniContext
     {
         public virtual DbSet<Alum> Alum { get; set; }
         public virtual DbSet<Class> Class { get; set; }
