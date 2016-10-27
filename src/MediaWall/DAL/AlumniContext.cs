@@ -2,8 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using MediaWall.DAL.Interfaces;
+using MediaWall.Models;
 
-namespace MediaWall.Models
+namespace MediaWall.DAL
 {
     public partial class AlumniContext : DbContext, IAlumniContext
     {
