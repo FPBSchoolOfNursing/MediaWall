@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
+
 namespace MediaWall.Models
 {
     public partial class AlumniContext : DbContext
@@ -12,8 +13,7 @@ namespace MediaWall.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-            optionsBuilder.UseSqlServer(@"Data Source=hawkeye-v.case.edu, 31338;Initial Catalog=Alumni;Integrated Security=True");
+            //optionsBuilder.UseSqlServer();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.IO;
+using MediaWall.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace MediaWall
 {
@@ -39,6 +41,8 @@ namespace MediaWall
             services.Configure<IISOptions>(options => {
                 //configre iis options here.
             });
+
+            services.AddDbContext<AlumniContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AlumniDatabase")));
             // Add framework services.
             services.AddMvc();
         }
