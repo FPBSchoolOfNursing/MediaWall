@@ -42,9 +42,9 @@ namespace MediaWall
             services.Configure<IISOptions>(options => {
                 //configre iis options here.
             });
-
+                        
             services.AddDbContext<AlumniContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AlumniDatabase")));
-            // Add framework services.
+            services.AddSingleton<IAlumniContext, AlumniContext>();
             services.AddMvc();
         }
 
