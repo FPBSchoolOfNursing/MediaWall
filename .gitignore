@@ -242,4 +242,3 @@ ModelManifest.xml
 .fake/
 web.config
 appsettings.json
-src/MediaWall/appsettings.json
