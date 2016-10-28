@@ -8,6 +8,10 @@ namespace MediaWall.DAL
 {
     public partial class AlumniContext : DbContext, IAlumniContext
     {
+        public AlumniContext(DbContextOptions<AlumniContext> options) : base(options)
+        {
+        }
+
         public virtual DbSet<Alum> Alum { get; set; }
         public virtual DbSet<Class> Class { get; set; }
         public virtual DbSet<Pictures> Pictures { get; set; }
