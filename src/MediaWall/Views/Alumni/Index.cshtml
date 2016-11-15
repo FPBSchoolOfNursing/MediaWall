@@ -113,8 +113,7 @@
 </environment>
 
     <script>        
-        $(function () {            
-
+        $(function () {
             var $grid = $(".grid").imagesLoaded(function () {
                 $grid = $('.grid').isotope({
                     // options...
@@ -133,12 +132,8 @@
                 });
             });
 
-
-           
             $(".filterbtn").click(function () {                
                 $(this).toggleClass("active");
-
-
                 if ($(this).hasClass("active")) {
                     var lowYearFilter = $(this).data("low-year-filter");
                     lowYearFilter = parseInt(lowYearFilter);
