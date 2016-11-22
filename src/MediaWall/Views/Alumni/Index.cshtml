@@ -21,7 +21,7 @@
             margin-bottom: 2em;
             user-select: none;
             -webkit-user-select: none;
-            
+            border: solid 0.15em #4F280A;
 
             -webkit-box-shadow: 0px 0px 40px 6px rgba(98,98,98,0.88);
             -moz-box-shadow: 0px 0px 40px 6px rgba(98,98,98,0.88);
@@ -99,9 +99,8 @@
         </div>
     </div>
 </div>
-@section scripts {
-   
 
+@section scripts {
 <environment names="Development">    
     <script src="~/lib/images-loaded/imagesloaded.pkgd.js"></script>   
     <script src="~/lib/isotope/dist/isotope.pkgd.js"></script>
@@ -120,8 +119,8 @@
                     itemSelector: '.grid-item',
                     layoutMode: 'masonry',
                     masonry: {
-                        columnWidth: 150, //LCD of 300 and 450
-                        gutter: 16
+                        columnWidth: 150, //LCD of 300 and 450; The optional widths of the thumbnail images.
+                        gutter: 16 //1 em gutter
                     },
                     getSortData: {
                         date: function (el) {
