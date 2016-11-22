@@ -9,14 +9,13 @@
 
     <environment names="Development">
         <link href="~/lib/tether/dist/css/tether.css" rel="stylesheet" /> 
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />       
-       
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" /> 
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
 
   
     <environment names="Staging,Production">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous"
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link href="~/lib/tether/dist/css/tether.css" rel="stylesheet" />
@@ -42,7 +41,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Directory</a>
                 </li>
-                @RenderSection("AdditionalMenuLinks", required: false)                
+
+                @RenderSection("AdditionalMenuLinks", required: false)
+                
            </ul>
         </div>
     </nav>
@@ -64,10 +65,7 @@
                 asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
                 asp-fallback-test="window.jQuery">
         </script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js" integrity="sha384-VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU" crossorigin="anonymous"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
-        </script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
         
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
