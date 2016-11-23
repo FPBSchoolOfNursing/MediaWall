@@ -51,27 +51,22 @@
         #actionbtns {}
     </style>
 }
-
+@section SideMenuHeaderText { Alumni Menu }
 
 @section SideMenuLinks {
-
+   <a id="datesortbtn" href="#">Sort by date</a>  
+   <a id="randomizebtn" href="#">Shuffle</a>  
+   <a href="#">Link 3</a>  
+   <a href="#">Link 4</a>
+   <select>
+       <option>1910</option>
+       <option>1920</option>
+       <option>1930</option>
+       <option>1940</option>
+    </select> 
+    <button type="button" class="btn btn-secondary filterbtn" data-low-year-filter="1950" data-high-year-filter="1960">1950</button>
+    <button type="button" class="btn btn-secondary filterbtn" data-low-year-filter="1970" data-high-year-filter="1980">1970</button>             
 }
-
-
-@section BottomMenuLinks {
-    <li class="nav-item">
-        <div id="actionbtns" class="btn-group" role="group" aria-label="Filtering buttons">
-            <button type="button" class="btn btn-secondary filterbtn" data-low-year-filter="1950" data-high-year-filter="1960">1950</button>
-            <button type="button" class="btn btn-secondary filterbtn" data-low-year-filter="1970" data-high-year-filter="1980">1970</button>
-            <button type="button" id="datesortbtn" class="btn btn-secondary">Date Sort</button>
-            <button type="button" id="randomizebtn" class="btn btn-secondary">Shuffle</button>
-            <button type="button" id="triggermenubtn" class="btn btn-secondary">Trigger</button>
-        </div>
-    </li>
-}
-
-
-
 
 <div class="grid">
     @foreach (var picture in Model)
@@ -182,11 +177,9 @@
                 $grid.isotope('shuffle');               
             });
 
-            $("#triggermenubtn").on("click", function (e) {
-                
-               
-                $("#right-slide-menu").toggleClass("opened");
-                console.log("opened");
+            $("#menubtn").on("click", function (e) {
+                e.preventDefault();               
+                $("#right-slide-menu").toggleClass("opened");                
             });
 
             //On a picture click 

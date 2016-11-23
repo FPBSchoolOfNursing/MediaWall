@@ -26,10 +26,8 @@
 </head>
 <body>
     <nav id="right-slide-menu" class="vertical-menu">
-        <h3>Menu</h3>
-        <ul>
-            @RenderSection("SideMenuLinks", required: false)
-        </ul>
+        <h3>@RenderSection("SideMenuHeaderText", required: false)</h3>
+        @RenderSection("SideMenuLinks", required: false)       
     </nav>
 
     <div class="container-fluid">
@@ -49,9 +47,9 @@
                 <li class="nav-item">
                     <a class="nav-link menu-action-link" href="@Url.Action("Index","Directory")">Directory</a>
                 </li>
-
-                @RenderSection("BottomMenuLinks", required: false)
-                
+                <li class="nav-item">
+                    <a id="menubtn" class="nav-link menu-action-link" href="#">Menu</a>
+                </li>
            </ul>
         </div>
     </nav>

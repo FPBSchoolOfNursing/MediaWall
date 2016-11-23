@@ -3,6 +3,10 @@
     background: #47a3da;
 	position: fixed;
     right: -240px;
+
+    -webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	transition: all 0.3s ease;
 }
 
 #right-slide-menu.opened {
@@ -18,18 +22,18 @@
 	background: #0d77b6;
 }
 
-#right-slide-menu ul li a {
+#right-slide-menu a {
 	display: block;
 	color: #fff;
 	font-size: 1.1em;
 	font-weight: 300;
 }
 
-#right-slide-menu ul li a:hover {
+#right-slide-menu a:hover {
     background: #435323;
 }
 
-#right-slide-menu ul li a:active {
+#right-slide-menu a:active {
 	background: #afdefa;
 	color: #47a3da;
 }
@@ -41,7 +45,7 @@
 	z-index: 1000;
 }
 
-#right-slide-menu.vertical-menu ul li a {
+#right-slide-menu.vertical-menu a {
     border-bottom: 1px solid #258ecd;
 	padding: 1em;
 }
