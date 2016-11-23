@@ -51,6 +51,7 @@
         #actionbtns {}
     </style>
 }
+
 @section SideMenuHeaderText { Alumni Menu }
 
 @section SideMenuLinks {
@@ -58,7 +59,7 @@
    <a id="randomizebtn" href="#">Shuffle</a>  
    <a href="#">Link 3</a>  
    <a href="#">Link 4</a>
-   <select>
+   <select class="form-control">
        <option>1910</option>
        <option>1920</option>
        <option>1930</option>
@@ -175,11 +176,6 @@
                 $(this).removeClass('active'); //we don't want the button press state to stick. 
                
                 $grid.isotope('shuffle');               
-            });
-
-            $("#menubtn").on("click", function (e) {
-                e.preventDefault();               
-                $("#right-slide-menu").toggleClass("opened");                
             });
 
             //On a picture click 
