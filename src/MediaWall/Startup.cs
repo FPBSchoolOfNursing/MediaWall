@@ -24,7 +24,7 @@ namespace MediaWall
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
-            /*
+            /* Moved to program.cs
             var host = new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
@@ -39,12 +39,15 @@ namespace MediaWall
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<IISOptions>(options => {
+            services.Configure<IISOptions>(options => {               
                 //configre iis options here.
             });
                         
             services.AddDbContext<AlumniContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AlumniDatabase")));
-            services.AddSingleton<IAlumniContext, AlumniContext>();
+            services.AddSingleton<IAlumniContext, AlumniContext>();         
+            
+            //Todo: Add reference to directory context.. First create the context :D  
+
             services.AddMvc();
         }
 
@@ -70,7 +73,7 @@ namespace MediaWall
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Alumni}/{action=Index}/{id?}");
             });
         }
     }

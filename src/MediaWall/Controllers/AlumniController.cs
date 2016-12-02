@@ -39,7 +39,7 @@ namespace MediaWall.Controllers
 
 
                 */
-            return View(db.Pictures.ToList());
+            return View(db.Pictures.ToList());            
         }
     }
 }
