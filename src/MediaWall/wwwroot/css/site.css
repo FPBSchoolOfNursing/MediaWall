@@ -52,16 +52,20 @@
 
 /* main nav */
 
-#menu-logo {
-    padding:0.5em; 
+#menu-logo img {
+    height: 6.5rem;
+}
+
+#menu-logo {   
+    padding:0.5rem; 
     background: #fff;
     border-radius:0.25em;
 }
 
 .menu-action-link {
-    height: 170px;
-    line-height: 170px;
-    width: 170px;
+    height: 7.5rem;   
+    line-height: 7.5rem;
+    width: 7.5rem;
     border-radius: 0.25em;
     display: inline-block;
     vertical-align: middle;
