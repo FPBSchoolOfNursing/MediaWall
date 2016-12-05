@@ -33,7 +33,7 @@
     background: #435323;
 }
 
-#right-slide-menu a:active {
+#right-slide-menu a:active, #right-slide-menu a.active {
 	background: #afdefa;
 	color: #47a3da;
 }
