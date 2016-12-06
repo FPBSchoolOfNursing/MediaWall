@@ -23,9 +23,9 @@
             -webkit-user-select: none;
             border: solid 0.15em #4F280A;
 
-            -webkit-box-shadow: 0px 0px 40px 6px rgba(98,98,98,0.88);
-            -moz-box-shadow: 0px 0px 40px 6px rgba(98,98,98,0.88);
-            box-shadow: 0px 0px 40px 6px rgba(98,98,98,0.88);
+            -webkit-box-shadow: 0px 0px 30px 3px rgba(98,98,98,0.88);
+            -moz-box-shadow: 0px 0px 30px 3px rgba(98,98,98,0.88);
+            box-shadow: 0px 0px 30px 3px rgba(98,98,98,0.88);
 
         }
         .thumbnail-vertical {
@@ -69,6 +69,7 @@
    <a href="#" class="filterlink" data-low-year-filter="1990" data-high-year-filter="2000">1990-2000</a>
    <a href="#" class="filterlink" data-low-year-filter="2000" data-high-year-filter="2010">2000-2010</a>
    <a href="#" class="filterlink" data-low-year-filter="2010" data-high-year-filter="2020">2010-2020</a>   
+   <a href="#" class="menu-toggle">Close Menu</a>    
 }
 
 <div class="grid">
@@ -128,7 +129,7 @@
                     layoutMode: 'masonry',
                     masonry: {
                         columnWidth: 90, //LCD of 180 and 270; The optional widths of the thumbnail images.
-                        gutter: 8 //1 em gutter
+                        gutter: 12 //1 em gutter
                     },
                     getSortData: {
                         date: function (el) {
