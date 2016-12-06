@@ -29,11 +29,11 @@
 
         }
         .thumbnail-vertical {
-            width: 300px;
+            width: 180px;
         }
 
         .thumbnail-horizontal {
-            width: 450px;
+            width: 270px;
         }
 
         .grid-item figure
@@ -57,16 +57,18 @@
 @section SideMenuLinks {
    <a id="datesortbtn" href="#">Sort by date</a>  
    <a id="randomizebtn" href="#">Shuffle</a>  
-   <a href="#">Link 3</a>  
-   <a href="#">Link 4</a>
-   <select class="form-control">
-       <option>1910</option>
-       <option>1920</option>
-       <option>1930</option>
-       <option>1940</option>
-    </select> 
-    <button type="button" class="btn btn-secondary filterbtn" data-low-year-filter="1950" data-high-year-filter="1960">1950</button>
-    <button type="button" class="btn btn-secondary filterbtn" data-low-year-filter="1970" data-high-year-filter="1980">1970</button>             
+   <a href="#" class="filterlink" data-low-year-filter="1900" data-high-year-filter="1910">1900-1910</a>  
+   <a href="#" class="filterlink" data-low-year-filter="1910" data-high-year-filter="1920">1910-1920</a>
+   <a href="#" class="filterlink" data-low-year-filter="1920" data-high-year-filter="1930">1920-1930</a>
+   <a href="#" class="filterlink" data-low-year-filter="1930" data-high-year-filter="1940">1930-1940</a>
+   <a href="#" class="filterlink" data-low-year-filter="1940" data-high-year-filter="1950">1940-1950</a>
+   <a href="#" class="filterlink" data-low-year-filter="1950" data-high-year-filter="1960">1950-1960</a>
+   <a href="#" class="filterlink" data-low-year-filter="1960" data-high-year-filter="1970">1960-1970</a>
+   <a href="#" class="filterlink" data-low-year-filter="1970" data-high-year-filter="1980">1970-1980</a>
+   <a href="#" class="filterlink" data-low-year-filter="1980" data-high-year-filter="1990">1980-1990</a>
+   <a href="#" class="filterlink" data-low-year-filter="1990" data-high-year-filter="2000">1990-2000</a>
+   <a href="#" class="filterlink" data-low-year-filter="2000" data-high-year-filter="2010">2000-2010</a>
+   <a href="#" class="filterlink" data-low-year-filter="2010" data-high-year-filter="2020">2010-2020</a>   
 }
 
 <div class="grid">
@@ -125,8 +127,8 @@
                     itemSelector: '.grid-item',
                     layoutMode: 'masonry',
                     masonry: {
-                        columnWidth: 150, //LCD of 300 and 450; The optional widths of the thumbnail images.
-                        gutter: 16 //1 em gutter
+                        columnWidth: 90, //LCD of 180 and 270; The optional widths of the thumbnail images.
+                        gutter: 8 //1 em gutter
                     },
                     getSortData: {
                         date: function (el) {
@@ -137,20 +139,27 @@
                 });
             });
 
-            $(".filterbtn").click(function () {                
-                $(this).toggleClass("active");
-                if ($(this).hasClass("active")) {
-                    var lowYearFilter = $(this).data("low-year-filter");
+            $(".filterlink").click(function (e) {
+                e.preventDefault();
+                var $this = $(this); //cache this for perf.
+                $this.toggleClass("active"); //toggle the active class
+
+                if ($(this).hasClass("active")) { //if active is on then we have to filter.
+
+                    //first we have to get the filter values
+                    var lowYearFilter = $this.data("low-year-filter");
                     lowYearFilter = parseInt(lowYearFilter);
 
-                    var highYearFilter = $(this).data("high-year-filter");
+                    var highYearFilter = $this.data("high-year-filter");
                     highYearFilter = parseInt(highYearFilter);
+                    
+                    //If we were going from one filter to another then we have to remove active from them
+                    $(".filterlink").not($this).removeClass("active");
 
-                    console.log(lowYearFilter, highYearFilter);
-
+                    //Filter the grid. 
                     $grid.isotope({
                         filter: function () {
-                            var datefilter = $(this).data("datesort"); //note this changes scope
+                            var datefilter = $(this).data("datesort"); //note $(this) changes scope
                             var dates = new Date(datefilter);                           
                             var year = dates.getFullYear();                          
                             
@@ -163,7 +172,7 @@
                             return '*';
                         }
                     });
-                } else {
+                } else { //if active is off then we have to remove all the filters                    
                     $grid.isotope({ filter: '*' });
                 }
             });
