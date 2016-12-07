@@ -25,14 +25,23 @@
     @RenderSection("styles", required: false)
 </head>
 <body>
+  
+    <section id="event-overlay" class="hidden">
+        <section id="event-content">
+            <section id="event-header">Header Text</section>
+            <section id="event-main">Main Text</section>
+            <section id="event-footer">Footer Text</section>
+        </section>
+    </section>
+    
     <nav id="right-slide-menu" class="vertical-menu">
         <h3>@RenderSection("SideMenuHeaderText", required: false)</h3>
         @RenderSection("SideMenuLinks", required: false)       
     </nav>
-
-    <div class="container-fluid">
+    
+    <main class="container-fluid">
         @RenderBody()        
-    </div>
+    </main>
 
     <nav class="navbar navbar-fixed-bottom navbar-dark bg-inverse">
         <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"></button>
@@ -42,14 +51,18 @@
             </a>
             <ul class="nav navbar-nav">                          
                 <li class="nav-item">
-                    <a class="nav-link menu-action-link" href="@Url.Action("Index","Directory")">Directory</a>
+                    <a id="directorylink" class="nav-link menu-action-link" href="@Url.Action("Index","Directory")">Directory</a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link menu-action-link" href="@Url.Action("Index","Alumni")">Alumni Photos <span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <a id="alumnilink" class="nav-link menu-action-link" href="@Url.Action("Index","Alumni")">Alumni Photos <span class="sr-only">(current)</span></a>
                 </li>    
+                <li class="nav-item">
+                    <a id="overlaybtn" class="nav-link menu-action-link" href="#">Show Overlay</a>
+                </li> 
                 <li class="nav-item float-xs-right">
-                    <a class="menu-toggle nav-link menu-action-link" href="#">Menu</a>
+                    <a class="menu-toggle nav-link menu-action-link" href="#">Open Menu</a>
                 </li>
+
            </ul>
         </div>
     </nav>
