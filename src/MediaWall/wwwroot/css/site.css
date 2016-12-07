@@ -90,8 +90,14 @@
 }
 
 #event-overlay #event-content {
-    margin: 15% auto;
+    margin: 5em auto;
     width: 95%;    
     background-color: #fefefe;
+    border-radius: 0.25em;
+    padding: 0.5em;
+}
+
+#event-overlay #event-content #event-header {
+
 }
 
