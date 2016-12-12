@@ -76,15 +76,15 @@
     padding: 0 !important;        
 }
 
-/* screensaver*/
+/* screensaver
 #event-overlay
 {
     position:fixed;
     top: 0;
     left: 0;
     width: 100%;   
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.9); 
     z-index: 1050;
     display:none;  
 }
@@ -99,5 +99,5 @@
 
 #event-overlay #event-content #event-header {
 
-}
+}*/
 
