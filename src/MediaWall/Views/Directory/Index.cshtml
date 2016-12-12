@@ -19,6 +19,12 @@
             color: #fff;
             background: #626262;             
         }
+        .table thead th {
+            border-bottom: none;
+        }
+        .table th, .table td {
+            border-color: #444;
+        }
     </style>
 }
 
@@ -39,7 +45,7 @@
 
 <div id="table-header" class="ui-widget-header ui-corner-top">Directory</div>
 <div id="table-content" class="ui-widget ui-widget-content">
-    <table id="directory-table" class="table table-hover">
+    <table id="directory-table" class="table">
         <thead>
             <tr>
                 <th></th>
@@ -49,16 +55,18 @@
                 <th>Email</th>
             </tr>
         </thead>
-        @foreach (var person in Model)
-        {
-            <tr>
-                <td>@person.CaseUserId</td>
-                <td>@person.Name</td>
-                <td>@person.OfficeNum</td>
-                <td>@person.Phone</td>
-                <td>@person.Email</td>
-            </tr>
-        }
+        <tbody>
+            @foreach (var person in Model)
+            {
+                <tr id="@person.CaseUserId" class="ui-state-default ui-widget-header">
+                    <td>@person.CaseUserId</td>
+                    <td>@person.Name</td>
+                    <td>@person.OfficeNum</td>
+                    <td>@person.Phone</td>
+                    <td>@person.Email</td>
+                </tr>
+            }
+        </tbody>
     </table>
 </div>
 
@@ -70,6 +78,18 @@
     <script>
     $(function() {
         $("#directorylink").addClass("active");
+
+        $("#directory-table tbody tr").hover(function () {
+            $(this).addClass("ui-state-hover");
+        },
+        function () {
+            $(this).removeClass("ui-state-hover");
+        });
+
+        $("#directory-table tbody tr").click(function () {
+            console.log("click", $(this).attr("id"));
+         });
+
     });
     </script>
 }

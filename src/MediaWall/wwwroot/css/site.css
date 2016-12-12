@@ -1,4 +1,14 @@
-﻿/* http://tympanus.net/codrops/2013/04/17/slide-and-push-menus/ */
+﻿
+html, body, address, footer, blockquote, dl, pre, span,  button, del, ins, map, object, abbr, acronym, b, bdo, big, cite, code, dfn, i, kbd, q, samp, small, sub, sup, tt, var, legend, fieldset  { 
+	font-family: 'Titillium Web', Helvetica, Arial, sans-serif;
+    color:#444;
+	margin:0; 
+	padding:0; 	
+	font-weight:normal; 
+	font-size:1rem; 
+} 
+
+/* http://tympanus.net/codrops/2013/04/17/slide-and-push-menus/ */
 #right-slide-menu {
     background: #47a3da;
 	position: fixed;
