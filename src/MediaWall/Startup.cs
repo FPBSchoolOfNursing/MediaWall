@@ -44,10 +44,10 @@ namespace MediaWall
             });
                         
             services.AddDbContext<AlumniContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AlumniDatabase")));
-            services.AddSingleton<IAlumniContext, AlumniContext>();         
-            
-            
-            //Todo: Add reference to directory context.. First create the context :D  
+            services.AddSingleton<IAlumniContext, AlumniContext>();
+
+            services.AddDbContext<DirectoryContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DirectoryDatabase")));
+            services.AddSingleton<IDirectoryContext, DirectoryContext>();          
 
             services.AddMvc();
         }
