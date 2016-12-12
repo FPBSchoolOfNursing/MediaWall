@@ -21,16 +21,10 @@ namespace MediaWall.Controllers
             db = context;
         }
         // GET: /<controller>/
-        public IActionResult Index()
+        public IActionResult Index(string WhatDirectory = null)
         {
-            var data = db.Set<GetDirectoryHeadersResult>().FromSql("Web.GetDirectoryHeaders @SearchTerm = {0}, @WhatDirectory = {1}", null, null);
-            
-            foreach(var d in data)
-            {
-                var s = d.Name;
-            }
-
-            return View();
+            var data = db.Set<GetDirectoryHeadersResult>().FromSql("Web.GetDirectoryHeaders @SearchTerm = {0}, @WhatDirectory = {1}", null, WhatDirectory);            
+            return View(data.ToList());
         }
     }
 }
