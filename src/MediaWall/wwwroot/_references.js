@@ -13,3 +13,4 @@
 /// <reference path="lib/masonry/masonry.js" />
 /// <reference path="lib/outlayer/outlayer.js" />
 /// <reference path="lib/tether/dist/js/tether.js" />
+/// <reference path="theme/jquery-ui.js" />

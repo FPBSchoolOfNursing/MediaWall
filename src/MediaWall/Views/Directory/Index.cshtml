@@ -1,6 +1,26 @@
 ﻿@model IEnumerable<MediaWall.Models.GetDirectoryHeadersResult>
 
-<h1>Directory</h1>
+@section styles {
+    <link href="~/theme/jquery-ui.min.css" rel="stylesheet" />
+    <style>       
+        body { background: rgb(10,48,78); }
+        h1 {color: #fff; }
+        #table-header{
+            margin-top: 1em;
+            padding: 0.25em;
+            font-size: 1.15rem;
+        }
+        #table-content
+        {
+            padding: 1em 3em;
+            margin-bottom: 10em;
+        }
+        #directory-table { 
+            color: #fff;
+            background: #626262;             
+        }
+    </style>
+}
 
 @section SideMenuHeaderText { Directory Menu }
 
@@ -17,7 +37,36 @@
     
 }
 
+<div id="table-header" class="ui-widget-header ui-corner-top">Directory</div>
+<div id="table-content" class="ui-widget ui-widget-content">
+    <table id="directory-table" class="table table-hover">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Office Number</th>
+                <th>Telephone</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        @foreach (var person in Model)
+        {
+            <tr>
+                <td>@person.CaseUserId</td>
+                <td>@person.Name</td>
+                <td>@person.OfficeNum</td>
+                <td>@person.Phone</td>
+                <td>@person.Email</td>
+            </tr>
+        }
+    </table>
+</div>
+
+
 @section scripts {
+    <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+        crossorigin="anonymous"></script>
     <script>
     $(function() {
         $("#directorylink").addClass("active");
