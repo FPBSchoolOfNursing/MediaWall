@@ -72,9 +72,8 @@ namespace MediaWall
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Alumni}/{action=Index}/{id?}");
+                routes.MapRoute(name: "directory", template: "{controller=Directory}/{action=Index}/{id?}")
+                routes.MapRoute(name: "default", template: "{controller=Alumni}/{action=Index}/{id?}");
             });
         }
     }
