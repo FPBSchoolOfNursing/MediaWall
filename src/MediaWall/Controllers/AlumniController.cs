@@ -12,9 +12,9 @@ namespace MediaWall.Controllers
 {
     public class AlumniController : Controller
     {
-        private IAlumniContext db;
+        private AlumniContext db;
 
-        public AlumniController(IAlumniContext context)
+        public AlumniController(AlumniContext context)
         {
             db = context;
         }

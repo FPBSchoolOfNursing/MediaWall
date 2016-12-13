@@ -21,9 +21,8 @@ namespace MediaWall.Controllers
             db = context;
         }
         
-        public IActionResult Index()
-        {
-            string WhatDirectory = "All";
+        public IActionResult Index(string WhatDirectory = "All")
+        {            
             var data = db.Set<GetDirectoryHeadersResult>().FromSql("Web.GetDirectoryHeaders @SearchTerm = {0}, @WhatDirectory = {1}", null, WhatDirectory);            
             return View(data.ToList());
         }

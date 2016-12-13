@@ -2,6 +2,7 @@
 
 @section styles {
     <link href="~/theme/jquery-ui.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" integrity="sha384-dNpIIXE8U05kAbPhy3G1cz+yZmTzA6CY8Vg/u2L9xRnHjJiAK76m2BIEaSEV+/aU" crossorigin="anonymous">
     <style>       
         body { background: rgb(10,48,78); }
         h1 {color: #fff; }
@@ -10,21 +11,27 @@
             padding: 0.25em;
             font-size: 1.15rem;
         }
+      
         #table-content
         {
             padding: 1em 3em;
             margin-bottom: 10em;
         }
-        #directory-table { 
-            color: #fff;
-            background: #626262;             
+        #directory-table, #directory-table tr td span.fa { 
+            color: #fff;                     
+        }       
+        
+        #directory-table thead {
+            background-color: #626262;
         }
+
         .table thead th {
             border-bottom: none;
         }
         .table th, .table td {
             border-color: #444;
         }
+        
     </style>
 }
 
@@ -59,7 +66,7 @@
             @foreach (var person in Model)
             {
                 <tr id="@person.CaseUserId" class="ui-state-default ui-widget-header">
-                    <td>@person.CaseUserId</td>
+                    <td><span class="fa fa-long-arrow-right"></span></td>
                     <td>@person.Name</td>
                     <td>@person.OfficeNum</td>
                     <td>@person.Phone</td>
