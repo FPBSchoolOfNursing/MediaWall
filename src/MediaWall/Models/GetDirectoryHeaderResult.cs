@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace MediaWall.Models
 {
-    public partial class Persontypeslookup
+    public class GetDirectoryHeaderResult
     {
-        public string PersonType { get; set; }
     }
 }
