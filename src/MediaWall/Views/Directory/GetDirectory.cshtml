@@ -101,16 +101,16 @@
 </div>
 
 @section scripts {
-    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-        crossorigin="anonymous"></script>
-    
-    <script src="~/js/Graphing/Drawing.js"></script>
-    <script src="~/js/Graphing/Graph.js"></script>
-    <script src="~/js/Graphing/Dijkstra.js"></script>
-    <script src="~/js/Graphing/MapPoints.js"></script>
- 
-
+    <environment names="Development">
+        <script src="~/js/Graphing/Drawing.js"></script>
+        <script src="~/js/Graphing/Graph.js"></script>
+        <script src="~/js/Graphing/Dijkstra.js"></script>
+        <script src="~/js/Graphing/MapPoints.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/js/Graphing/DGDM.min.js"></script>
+    </environment>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
     <script>
         var canvas;
         var maptimer;
@@ -135,40 +135,40 @@
                 $(this).toggleClass("ui-state-hover");
             });
 
-        $("#directory-table tbody tr").click(function () { //show map to persons locattion
-            var officeno = $(this).find("td:eq(2)").text(); //get the office number from the table.
-            //debuging tests.
-            // officeno = "NOA44H";
-            DrawMap("Elevator", officeno, mappath); //change office no to be whatever you want to trace a specific path.
-            clearTimeout(maptimer); //clear the auto closing timer.
+            $("#directory-table tbody tr").click(function () { //show map to persons locattion
+                var officeno = $(this).find("td:eq(2)").text(); //get the office number from the table.
+                //debuging tests.
+                // officeno = "NOA44H";
+                DrawMap("Elevator", officeno, mappath); //change office no to be whatever you want to trace a specific path.
+                clearTimeout(maptimer); //clear the auto closing timer.
 
-            $("#mapmodal .modal-title").text("Location of " + officeno);
-            $("#mapmodal").modal('show');
+                $("#mapmodal .modal-title").text("Location of " + officeno);
+                $("#mapmodal").modal('show');
 
-            maptimer = setTimeout(CloseDialog, 6e4); //close the dialog box after 1 minute of inactivity.
+                maptimer = setTimeout(CloseDialog, 6e4); //close the dialog box after 1 minute of inactivity.
+            });
+
+            $(".filterdir").click(function (e) {
+                e.preventDefault();
+                $(this).addClass('active'); //make the link active
+                $(".filterdir").not($(this)).removeClass("active"); //remove all the other active links
+
+                var filter = $(this).data("filter"); //find what to filter on
+                if (filter != "All") { //if it's not everyone, then selectively show
+                    $("#directory-table tbody").fadeOut(function () { // you have to hide the tbody or the tds. Hiding trs causes issues since they aren't block elements.
+                        $("#directory-table tbody tr[data-persontype!=" + filter + "]").hide(); //this should cause some race conditions but it's so fast it can't be seen..
+                        $("#directory-table tbody tr[data-persontype=" + filter + "]").show();
+                        $(this).fadeIn();
+                    });
+                }
+                else //just show everyone
+                {
+                    $("#directory-table tbody").fadeOut(function () { //fade the table body
+                        $("#directory-table tbody tr").show(); //show everything
+                        $(this).fadeIn(); //fade the table body back in.
+                    });
+                }
+            });
         });
-
-        $(".filterdir").click(function (e) {
-            e.preventDefault();
-            $(this).addClass('active'); //make the link active
-            $(".filterdir").not($(this)).removeClass("active"); //remove all the other active links
-
-            var filter = $(this).data("filter"); //find what to filter on
-            if (filter != "All") { //if it's not everyone, then selectively show
-                $("#directory-table tbody").fadeOut(function () { // you have to hide the tbody or the tds. Hiding trs causes issues since they aren't block elements.
-                    $("#directory-table tbody tr[data-persontype!=" + filter + "]").hide(); //this should cause some race conditions but it's so fast it can't be seen..
-                    $("#directory-table tbody tr[data-persontype=" + filter + "]").show();
-                    $(this).fadeIn();
-                });
-            }
-            else //just show everyone
-            {
-                $("#directory-table tbody").fadeOut(function () { //fade the table body
-                    $("#directory-table tbody tr").show(); //show everything
-                    $(this).fadeIn(); //fade the table body back in.
-                });
-            }
-        });
-    });
-</script>
+    </script>
 }

@@ -1,4 +1,6 @@
 ﻿/// <autosync enabled="true" />
+/// <reference path="js/directory/directory.js" />
+/// <reference path="js/graphing/dgdm.min.js" />
 /// <reference path="js/graphing/Dijkstra.js" />
 /// <reference path="js/graphing/drawing.js" />
 /// <reference path="js/graphing/Graph.js" />

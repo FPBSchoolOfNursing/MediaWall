@@ -70,7 +70,7 @@
         <script src="~/lib/tether/dist/js/tether.js"></script>
         <script src="~/lib/jquery/dist/jquery.js"></script>        
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>              
-        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>      
     </environment>
     
     <environment names="Staging,Production">
@@ -85,7 +85,7 @@
         </script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
         
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script> <!-- Note mapping libs will compile into-->
     </environment>
 
     @RenderSection("scripts", required: false)
