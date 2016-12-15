@@ -6,7 +6,25 @@
     // An array of relative input file paths. Globbing patterns supported
     "inputFiles": [
       "wwwroot/css/site.css"
-    ]
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    // Optinally generate .map file
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/css/directory/directory.min.css",
+    "inputFiles": [
+      "wwwroot/css/directory/directory.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    // Optinally generate .map file
+    "sourceMap": true
   },
   {
     "outputFileName": "wwwroot/js/site.min.js",

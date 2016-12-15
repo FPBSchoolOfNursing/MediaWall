@@ -3,43 +3,12 @@
 @section styles {
     <link href="~/theme/jquery-ui.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" integrity="sha384-dNpIIXE8U05kAbPhy3G1cz+yZmTzA6CY8Vg/u2L9xRnHjJiAK76m2BIEaSEV+/aU" crossorigin="anonymous">
-    <style>       
-        body { background: rgb(10,48,78); }
-        h1 {color: #fff; }
-        #table-header{
-            margin-top: 1em;
-            padding: 0.25em;
-            font-size: 1.15rem;
-        }
-      
-        #table-content
-        {
-            padding: 1em 3em;
-            margin-bottom: 10em;
-        }
-        #directory-table, #directory-table tr td span.fa { 
-            color: #fff;                     
-        }       
-        
-        #directory-table thead {
-            background-color: #626262;
-        }
-
-        .table thead th {
-            border-bottom: none;
-        }
-        .table th, .table td {
-            border-color: #444;
-        }
-        .table td{
-            cursor:pointer;
-        }
-        
-        .modal-xl {
-            max-width: 90%;
-            overflow: auto;
-        }
-    </style>
+    <environment names="Development">
+        <link href="~/css/Directory/directory.css" rel="stylesheet" />
+    </environment>
+    <environment names="Staging,Production">
+        <link href="~/css/Directory/directory.min.css" rel="stylesheet" />
+    </environment>
 }
 
 @section SideMenuHeaderText { Directory Menu }
@@ -49,7 +18,7 @@
     <a class="filterdir" data-filter="Faculty" href="#">Show Faculty</a>
     <a class="filterdir" data-filter="Staff" href="#">Show Staff</a>
     <a class="filterdir" data-filter="Postdoc" href="#">Show PostDocs</a>
-    <a href="#" class="menu-toggle">Close Menu</a>  
+    <a href="#" class="menu-toggle">Close Menu</a>
 }
 
 <div id="table-header" class="ui-widget-header ui-corner-top">Directory</div>
@@ -80,7 +49,8 @@
 </div>
 
 <div id="mapmodal" class="modal fade">
-    <div class="modal-dialog modal-xl" role="document"> <!-- note modal-xl is not part of the bootstrap lib. I added it to accustom for the map (which is a static image, with a canvas overlay) -->
+    <div class="modal-dialog modal-xl" role="document">
+        <!-- note modal-xl is not part of the bootstrap lib. I added it to accustom for the map (which is a static image, with a canvas overlay) -->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -132,7 +102,9 @@
             $("#directorylink").addClass("active"); //make the menu link active
 
             $("#directory-table tbody tr").hover(function () { //add hover effect for jquery ui
-                $(this).toggleClass("ui-state-hover");
+                $(this).addClass("ui-state-hover");
+            }, function() {
+                $(this).removeClass("ui-state-hover");            
             });
 
             $("#directory-table tbody tr").click(function () { //show map to persons locattion
