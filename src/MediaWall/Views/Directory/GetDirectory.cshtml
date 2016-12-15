@@ -114,8 +114,17 @@
     <script>
         var canvas;
         var maptimer;
+
+        var mappath = { //store the paths to the images in an object. This will help MVC and routing determine where the image is.
+            basement: '@Url.Content("~/images/Maps/Basement_1000.jpg")',
+            ground: '@Url.Content("~/images/Maps/Ground_1000.jpg")',
+            one: '@Url.Content("~/images/Maps/1_1000.jpg")',
+            two: '@Url.Content("~/images/Maps/2_1000.jpg")',
+            three: '@Url.Content("~/images/Maps/3_1000.jpg")'
+        }
+
         function CloseDialog() {
-            $("#mapdialog").dialog("close"); //close our dialog box             
+            $("#mapdialog").dialog("close"); //close our dialog box
             $("html, body").animate({ scrollTop: 0 }, "slow");
         }
 
@@ -130,7 +139,7 @@
             var officeno = $(this).find("td:eq(2)").text(); //get the office number from the table.
             //debuging tests.
             // officeno = "NOA44H";
-            DrawMap("Elevator", officeno); //change office no to be whatever you want to trace a specific path.
+            DrawMap("Elevator", officeno, mappath); //change office no to be whatever you want to trace a specific path.
             clearTimeout(maptimer); //clear the auto closing timer.
 
             $("#mapmodal .modal-title").text("Location of " + officeno);
@@ -159,7 +168,7 @@
                     $(this).fadeIn(); //fade the table body back in.
                 });
             }
-        });      
+        });
     });
 </script>
 }

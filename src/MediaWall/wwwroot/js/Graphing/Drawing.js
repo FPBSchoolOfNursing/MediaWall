@@ -1,4 +1,4 @@
-﻿function DrawMap(source, destination) {
+﻿function DrawMap(source, destination, images) {
     var graph;
     var path;
     var imgsrc;
@@ -7,31 +7,31 @@
     //if destination is a particular floor get it's image map, image dimenstions for the wide screen, and the graph for that floor.
     if (destination.substring(0, 3) == "NOA") {
         graph = MapPoints.GetGroundFloor();
-
-        imgsrc = "Images/Maps/Ground_1000.jpg"; //scale from 990x1449 -> 1000->1464
+        
+        imgsrc = images.ground; //scale from 990x1449 -> 1000->1464
         imgwidth = 1464;
     }
     else if (destination.substring(0, 3) == "NOB") {
         graph = MapPoints.GetBasement();
-        imgsrc = "Images/Maps/Basement_1000.jpg"; //Scale from 979x1084 -> 1000x1107
+        imgsrc = images.basement; //Scale from 979x1084 -> 1000x1107
         imgwidth = 1107;
     }
     else {
         switch (destination[0]) {
             case "2":
                 graph = MapPoints.GetSecondFloor();
-                imgsrc = "Images/Maps/2_1000.jpg";
+                imgsrc = images.two;
                 imgwidth = 633; //Scale from 993x620 -> 1000x633  
                 break;
             case "3":
                 graph = MapPoints.GetThirdFloor();
-                imgsrc = "Images/Maps/3_1000.jpg";
+                imgsrc = images.three;
                 imgwidth = 631; //Scale from 988x623 -> 1000x631             
                 break;
             case "1":
             default:
                 graph = MapPoints.GetFirstFloor();
-                imgsrc = "Images/Maps/1_1000.jpg"; //scale from 990x620 -> 1000->626
+                imgsrc = images.one; //scale from 990x620 -> 1000->626
                 imgwidth = 626;
                 break;
         }
