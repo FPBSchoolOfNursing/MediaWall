@@ -38,16 +38,11 @@
 @section SideMenuHeaderText { Directory Menu }
 
 @section SideMenuLinks {
-    <a href="#">Show Faculty</a>
-    <a href="#">Show Staff</a>
-    <a href="#">Show something else.</a>
-    <select class="form-control">
-        <option>A-C</option>
-        <option>D-F</option>
-        <option>G-H</option>
-        <option>I-K</option>
-    </select>    
-    
+    <a class="filterdir active" data-filter="All" href="#">Show Everyone</a>
+    <a class="filterdir" data-filter="Faculty" href="#">Show Faculty</a>
+    <a class="filterdir" data-filter="Staff" href="#">Show Staff</a>
+    <a class="filterdir" data-filter="Postdoc" href="#">Show PostDocs</a>
+    <a href="#" class="menu-toggle">Close Menu</a>  
 }
 
 <div id="table-header" class="ui-widget-header ui-corner-top">Directory</div>
@@ -65,7 +60,7 @@
         <tbody>
             @foreach (var person in Model)
             {
-                <tr id="@person.CaseUserId" class="ui-state-default ui-widget-header">
+                <tr id="@person.CaseUserId" data-persontype="@person.PersonType" class="ui-state-default ui-widget-header">
                     <td><span class="fa fa-long-arrow-right"></span></td>
                     <td>@person.Name</td>
                     <td>@person.OfficeNum</td>
@@ -79,24 +74,42 @@
 
 
 @section scripts {
-    <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"
         integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
         crossorigin="anonymous"></script>
     <script>
     $(function() {
-        $("#directorylink").addClass("active");
+        $("#directorylink").addClass("active"); //make the menu link active
 
-        $("#directory-table tbody tr").hover(function () {
-            $(this).addClass("ui-state-hover");
-        },
-        function () {
-            $(this).removeClass("ui-state-hover");
+        $("#directory-table tbody tr").hover(function () { //add hover effect for jquery ui
+            $(this).toggleClass("ui-state-hover");
         });
 
-        $("#directory-table tbody tr").click(function () {
+        $("#directory-table tbody tr").click(function () { //show map to persons locattion
             console.log("click", $(this).attr("id"));
-         });
+        });
 
-    });
+        $(".filterdir").click(function (e) {
+            e.preventDefault();
+            $(this).addClass('active'); //make the link active
+            $(".filterdir").not($(this)).removeClass("active"); //remove all the other active links                        
+
+            var filter = $(this).data("filter"); //find what to filter on
+            if (filter != "All") { //if it's not everyone, then selectively show 
+                $("#directory-table tbody").fadeOut(function () { // you have to hide the tbody or the tds. Hiding trs causes issues since they aren't block elements.
+                    $("#directory-table tbody tr[data-persontype!=" + filter + "]").hide(); //this should cause some race conditions but it's so fast it can't be seen..
+                    $("#directory-table tbody tr[data-persontype=" + filter + "]").show();
+                    $(this).fadeIn();
+                });
+            }
+            else //just show everyone 
+            {
+                $("#directory-table tbody").fadeOut(function () { //fade the table body 
+                    $("#directory-table tbody tr").show(); //show everything
+                    $(this).fadeIn(); //fade the table body back in.
+                });
+            }
+        });
+    });    
     </script>
 }
