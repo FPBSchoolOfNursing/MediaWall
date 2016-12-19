@@ -1,43 +1,43 @@
-﻿ h1{ color: rgb(98,98,98); }
-        body{
-            background: #0a304e;
-            /*background: #626262;*/
-        }
+﻿h1{ color: rgb(98,98,98); }
+body{
+    background: #0a304e;
+    /*background: #626262;*/
+}
 
-        .grid {
-            margin: 2em 0; /* allow some scroll space to allow grid items to appear above the navbar.*/
-        }
+.grid {
+    margin: 2em 0; /* allow some scroll space to allow grid items to appear above the navbar.*/
+}
 
-        .grid-item {
-            float: left;          
-            margin-bottom: 2em;
-            user-select: none;
-            -webkit-user-select: none;
-            border: solid 0.15em #4F280A;
+.grid-item {
+    float: left;          
+    margin-bottom: 2em;
+    user-select: none;
+    -webkit-user-select: none;
+    border: solid 0.15em #4F280A;
 
-            -webkit-box-shadow: 0px 0px 30px 3px rgba(98,98,98,0.88);
-            -moz-box-shadow: 0px 0px 30px 3px rgba(98,98,98,0.88);
-            box-shadow: 0px 0px 30px 3px rgba(98,98,98,0.88);
+    -webkit-box-shadow: 0px 0px 30px 3px rgba(98,98,98,0.88);
+    -moz-box-shadow: 0px 0px 30px 3px rgba(98,98,98,0.88);
+    box-shadow: 0px 0px 30px 3px rgba(98,98,98,0.88);
 
-        }
-        .thumbnail-vertical {
-            width: 180px; /* Note these numbers impact the gutter attribute on the isotope js*/
-        }
+}
+.thumbnail-vertical {
+    width: 180px; /* Note these numbers impact the gutter attribute on the isotope js*/
+}
 
-        .thumbnail-horizontal {
-            width: 270px;
-        }
+.thumbnail-horizontal {
+    width: 270px;
+}
 
-        .grid-item figure
-        {
-            cursor: pointer;
-            margin-bottom: 0;
-        }
-        .grid-item figure figcaption {
-            background: #bfbfbf;
-            padding: 10px;
-            color: #0a304e;
-            cursor: default;
-            border-top: 0.1em solid #0a304e;
-        }
-        #actionbtns {}
+.grid-item figure
+{
+    cursor: pointer;
+    margin-bottom: 0;
+}
+.grid-item figure figcaption {
+    background: #bfbfbf;
+    padding: 10px;
+    color: #0a304e;
+    cursor: default;
+    border-top: 0.1em solid #0a304e;
+}
+#actionbtns {}
