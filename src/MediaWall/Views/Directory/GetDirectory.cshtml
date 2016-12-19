@@ -1,4 +1,7 @@
 ﻿@model IEnumerable<MediaWall.Models.GetDirectoryHeadersResult>
+@{
+    ViewData["Title"] = "Directory";
+}
 
 @section styles {
     <link href="~/theme/jquery-ui.min.css" rel="stylesheet" />
@@ -71,76 +74,29 @@
 </div>
 
 @section scripts {
-    <environment names="Development">
-        <script src="~/js/Graphing/Drawing.js"></script>
-        <script src="~/js/Graphing/Graph.js"></script>
-        <script src="~/js/Graphing/Dijkstra.js"></script>
-        <script src="~/js/Graphing/MapPoints.js"></script>
-    </environment>
-    <environment names="Staging,Production">
-        <script src="~/js/Graphing/DGDM.min.js"></script>
-    </environment>
-    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
     <script>
-        var canvas;
-        var maptimer;
+        //put mappath in a different scope. We have to declare it here since We are using MVC to generate the paths to the map images.
+        var Directory = Directory || {}; //declare the directory namespace. 
 
-        var mappath = { //store the paths to the images in an object. This will help MVC and routing determine where the image is.
+        Directory.MapPath = { //store the paths to the images in an object. This will help MVC and routing determine where the image is.
             basement: '@Url.Content("~/images/Maps/Basement_1000.jpg")',
             ground: '@Url.Content("~/images/Maps/Ground_1000.jpg")',
             one: '@Url.Content("~/images/Maps/1_1000.jpg")',
             two: '@Url.Content("~/images/Maps/2_1000.jpg")',
             three: '@Url.Content("~/images/Maps/3_1000.jpg")'
-        }
-
-        function CloseDialog() {
-            $("#mapmodal").modal("hide"); //close our dialog box
-            $("html, body").animate({ scrollTop: 0 }, "slow");
-        }
-
-        $(function () {
-            $("#directorylink").addClass("active"); //make the menu link active
-
-            $("#directory-table tbody tr").hover(function () { //add hover effect for jquery ui
-                $(this).addClass("ui-state-hover");
-            }, function() {
-                $(this).removeClass("ui-state-hover");            
-            });
-
-            $("#directory-table tbody tr").click(function () { //show map to persons locattion
-                var officeno = $(this).find("td:eq(2)").text(); //get the office number from the table.
-                //debuging tests.
-                // officeno = "NOA44H";
-                DrawMap("Elevator", officeno, mappath); //change office no to be whatever you want to trace a specific path.
-                clearTimeout(maptimer); //clear the auto closing timer.
-
-                $("#mapmodal .modal-title").text("Location of " + officeno);
-                $("#mapmodal").modal('show');
-
-                maptimer = setTimeout(CloseDialog, 6e4); //close the dialog box after 1 minute of inactivity.
-            });
-
-            $(".filterdir").click(function (e) {
-                e.preventDefault();
-                $(this).addClass('active'); //make the link active
-                $(".filterdir").not($(this)).removeClass("active"); //remove all the other active links
-
-                var filter = $(this).data("filter"); //find what to filter on
-                if (filter != "All") { //if it's not everyone, then selectively show
-                    $("#directory-table tbody").fadeOut(function () { // you have to hide the tbody or the tds. Hiding trs causes issues since they aren't block elements.
-                        $("#directory-table tbody tr[data-persontype!=" + filter + "]").hide(); //this should cause some race conditions but it's so fast it can't be seen..
-                        $("#directory-table tbody tr[data-persontype=" + filter + "]").show();
-                        $(this).fadeIn();
-                    });
-                }
-                else //just show everyone
-                {
-                    $("#directory-table tbody").fadeOut(function () { //fade the table body
-                        $("#directory-table tbody tr").show(); //show everything
-                        $(this).fadeIn(); //fade the table body back in.
-                    });
-                }
-            });
-        });
+        };
     </script>
+    <environment names="Development">
+        <script src="~/js/Graphing/Drawing.js"></script>
+        <script src="~/js/Graphing/Graph.js"></script>
+        <script src="~/js/Graphing/Dijkstra.js"></script>
+        <script src="~/js/Graphing/MapPoints.js"></script>        
+        <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+        <script src="~/js/Directory/Directory.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/js/Graphing/DGDM.min.js"></script>
+        <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+        <script src="~/js/Directory/Directory.min.js"></script>
+    </environment>
 }

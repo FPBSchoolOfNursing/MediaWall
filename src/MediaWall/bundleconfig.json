@@ -27,6 +27,20 @@
     "sourceMap": true
   },
   {
+    "outputFileName": "wwwroot/css/alumni/alumni.min.css",
+    "inputFiles": [
+      "wwwroot/css/directory/alumni.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    // Optinally generate .map file
+    "sourceMap": true
+  },
+
+
+  {
     "outputFileName": "wwwroot/js/site.min.js",
     "inputFiles": [
       "wwwroot/js/site.js"
@@ -46,6 +60,19 @@
       "wwwroot/js/Graphing/Graph.js",
       "wwwroot/js/Graphing/Dijkstra.js",
       "wwwroot/js/Graphing/MapPoints.js"
+    ],
+    // Optionally specify minification options
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    // Optinally generate .map file
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/js/Directory.min.js",
+    "inputFiles": [
+      "wwwroot/js/Directory/Directory.js"
     ],
     // Optionally specify minification options
     "minify": {
