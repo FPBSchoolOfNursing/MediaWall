@@ -1,5 +1,5 @@
 ﻿/// <autosync enabled="true" />
-/// <reference path="js/directory.min.js" />
+/// <reference path="js/alumni/alumni.js" />
 /// <reference path="js/directory/directory.js" />
 /// <reference path="js/graphing/dgdm.min.js" />
 /// <reference path="js/graphing/Dijkstra.js" />

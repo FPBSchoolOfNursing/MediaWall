@@ -29,7 +29,7 @@
   {
     "outputFileName": "wwwroot/css/alumni/alumni.min.css",
     "inputFiles": [
-      "wwwroot/css/directory/alumni.css"
+      "wwwroot/css/alumni/alumni.css"
     ],
     "minify": {
       "enabled": true,
@@ -70,9 +70,22 @@
     "sourceMap": true
   },
   {
-    "outputFileName": "wwwroot/js/Directory.min.js",
+    "outputFileName": "wwwroot/js/Directory/Directory.min.js",
     "inputFiles": [
       "wwwroot/js/Directory/Directory.js"
+    ],
+    // Optionally specify minification options
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    // Optinally generate .map file
+    "sourceMap": true
+  },
+  {
+    "outputFileName": "wwwroot/js/Alumni/Alumni.min.js",
+    "inputFiles": [
+      "wwwroot/js/Alumni/Alumni.js"
     ],
     // Optionally specify minification options
     "minify": {

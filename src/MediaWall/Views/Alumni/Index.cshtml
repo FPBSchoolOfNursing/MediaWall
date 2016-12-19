@@ -11,8 +11,7 @@
 
     <environment names="Staging,Production">
         <link href="~/css/Alumni/Alumni.min.css" rel="stylesheet" />
-    </environment>
-    
+    </environment>    
 }
 
 @section SideMenuHeaderText { Alumni Menu }
@@ -20,6 +19,7 @@
 @section SideMenuLinks {
    <a id="datesortbtn" href="#">Sort by date</a>  
    <a id="randomizebtn" href="#">Shuffle</a>  
+   <a href="#" class="filterlink">Alumni</a>
    <a href="#" class="filterlink" data-low-year-filter="1900" data-high-year-filter="1910">1900-1910</a>  
    <a href="#" class="filterlink" data-low-year-filter="1910" data-high-year-filter="1920">1910-1920</a>
    <a href="#" class="filterlink" data-low-year-filter="1920" data-high-year-filter="1930">1920-1930</a>
@@ -35,7 +35,7 @@
    <a href="#" class="menu-toggle">Close Menu</a>    
 }
 
-<div class="grid">
+<div class="grid">   
     @foreach (var picture in Model)
     {
         string orientation = "vertical";
@@ -44,7 +44,9 @@
             orientation = (picture.ThumbnailHeight.Value > picture.ThumbnailWidth.Value) ? "vertical" : "horizontal";
         }
 
-        <div class="grid-item" data-datesort="@picture.DisplayYear">
+        bool isAlum = (picture.DisplayYear.HasValue && picture.DisplayYear.Value.Day == 31 && picture.DisplayYear.Value.Month == 12);
+
+        <div class="grid-item" data-datesort="@picture.DisplayYear" data-alumni="@isAlum">
             <figure class="thumbnail-@orientation">
                 <a href="@picture.WallLocation" title="@picture.Caption"><img class="thumbnail-@orientation" src="@picture.ThumbnailLocation" /> </a>
                 <figcaption>@picture.Caption</figcaption>
@@ -76,93 +78,12 @@
 <environment names="Development">    
     <script src="~/lib/images-loaded/imagesloaded.pkgd.js"></script>   
     <script src="~/lib/isotope/dist/isotope.pkgd.js"></script>
+    <script src="~/js/Alumni/Alumni.js"></script>
 </environment>
 
 <environment names="Staging,Production"> 
     <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>   
     <script src="https://unpkg.com/isotope-layout@3.0/dist/isotope.pkgd.min.js"></script>
-</environment>
-
-    <script>        
-        $(function () {
-            var $grid = $(".grid").imagesLoaded(function () {
-                $grid = $('.grid').isotope({
-                    // options...
-                    itemSelector: '.grid-item',
-                    layoutMode: 'masonry',
-                    masonry: {
-                        columnWidth: 90, //LCD of 180 and 270; The optional widths of the thumbnail images.
-                        gutter: 12 //1 em gutter
-                    },
-                    getSortData: {
-                        date: function (el) {
-                            var strdate = $(el).data("datesort");
-                            return new Date(strdate);
-                        }
-                    }
-                });
-            });
-
-            $(".filterlink").click(function (e) {
-                e.preventDefault();
-                var $this = $(this); //cache this for perf.
-                $this.toggleClass("active"); //toggle the active class
-
-                if ($(this).hasClass("active")) { //if active is on then we have to filter.
-
-                    //first we have to get the filter values
-                    var lowYearFilter = $this.data("low-year-filter");
-                    lowYearFilter = parseInt(lowYearFilter);
-
-                    var highYearFilter = $this.data("high-year-filter");
-                    highYearFilter = parseInt(highYearFilter);
-                    
-                    //If we were going from one filter to another then we have to remove active from them
-                    $(".filterlink").not($this).removeClass("active");
-
-                    //Filter the grid. 
-                    $grid.isotope({
-                        filter: function () {
-                            var datefilter = $(this).data("datesort"); //note $(this) changes scope
-                            var dates = new Date(datefilter);                           
-                            var year = dates.getFullYear();                          
-                            
-                            if(lowYearFilter > 0) {
-                                if (highYearFilter > 0) {
-                                    return (year >= lowYearFilter && year < highYearFilter);
-                                }
-                                return (year >= lowYearFilter);
-                            }
-                            return '*';
-                        }
-                    });
-                } else { //if active is off then we have to remove all the filters                    
-                    $grid.isotope({ filter: '*' });
-                }
-            });
-
-            $("#datesortbtn").click(function () {
-                $grid.isotope({ sortBy: 'date' });                
-            });
-
-            $("#randomizebtn").click(function () {
-                $(this).removeClass('active'); //we don't want the button press state to stick. 
-               
-                $grid.isotope('shuffle');               
-            });
-
-            //On a picture click 
-            $(".grid-item figure a").click(function (e) {               
-                e.preventDefault();
-                var href = $(this).attr("href");
-                var title = $(this).attr("title");
-               
-                $("#imagemodal").find(".modal-title").html(title);
-                $("#imagemodal").find("#classimg").attr("src", href).attr("alt", "Alt image");
-                $("#imagemodal").modal('show');
-            });
-
-            $("#alumnilink").addClass("active");
-        });
-    </script>
+    <script src="~/js/Alumni/Alumni.min.js"></script>
+</environment>   
 }

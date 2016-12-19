@@ -36,8 +36,6 @@ namespace MediaWall.Controllers
                         <figcaption>picture.Caption</figcaption>
                     </figure>
                 </div>
-
-
                 */
             return View(db.Pictures.ToList());            
         }
