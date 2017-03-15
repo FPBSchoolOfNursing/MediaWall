@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using MediaWall.DAL;
-using MediaWall.DAL.Interfaces;
+using MediaWall.Models;
+using System;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -37,7 +35,23 @@ namespace MediaWall.Controllers
                     </figure>
                 </div>
                 */
-            return View(db.Pictures.ToList());            
+            
+            return View(db.Pictures.ToList().OrderBy(s=>s.DisplayYear));            
+        }
+
+        public ActionResult GetBio(int input)
+        {
+            Pictures p = db.Pictures.Find(input);            
+            Alum a = db.Alum.FirstOrDefault(x => x.Pid == input);
+
+            if (a != null)
+            {
+                if (!String.IsNullOrWhiteSpace(a.Biography))
+                {
+                    return new JsonResult(new { bio = a.Biography });
+                }
+            }
+            return new JsonResult(null);
         }
     }
 }

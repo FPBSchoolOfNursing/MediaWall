@@ -38,8 +38,8 @@ $(function () {
         if (filter != "All") { //if it's not everyone, then selectively show
             $("#table-header").text(filter);
             $("#directory-table tbody").fadeOut(function () { // you have to hide the tbody or the tds. Hiding trs causes issues since they aren't block elements.
-                $("#directory-table tbody tr[data-persontype!=" + filter + "]").hide(); //this should cause some race conditions but it's so fast it can't be seen..
-                $("#directory-table tbody tr[data-persontype=" + filter + "]").show();
+                $('#directory-table tbody tr[data-persontype!="' + filter + '"]').hide(); //this should cause some race conditions but it's so fast it can't be seen..
+                $('#directory-table tbody tr[data-persontype="' + filter + '"]').show();
                 $(this).fadeIn();
             });
         }

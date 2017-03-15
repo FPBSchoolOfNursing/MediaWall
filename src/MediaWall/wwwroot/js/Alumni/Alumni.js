@@ -80,11 +80,22 @@
         e.preventDefault();
         var href = $(this).attr("href");
         var title = $(this).attr("title");
+        var pid = $(this).data("pid");
+        var modaldiv = $("#imagemodal");
 
-        $("#imagemodal").find(".modal-title").html(title);
-        $("#imagemodal").find("#classimg").attr("src", href).attr("alt", "Alt image");
-        $("#imagemodal").modal('show');
+        modaldiv.find(".modal-title").html(title);
+        modaldiv.find("#classimg").attr("src", href).attr("alt", "Alt image");
+        $.get("./GetBio", { input: pid }, function (data) {
+            if (data != null) {
+                modaldiv.find("#bio").html(data.bio);
+            }
+            else
+            {
+                modaldiv.find("#bio").empty();
+            }
+        }, "json");
+        modaldiv.modal('show');
     });
 
-    $("#alumnilink").addClass("active");
+    $("#alumnilink").addClass("active");    
 });

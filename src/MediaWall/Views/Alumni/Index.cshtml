@@ -48,7 +48,9 @@
 
         <div class="grid-item" data-datesort="@picture.DisplayYear" data-alumni="@isAlum">
             <figure class="thumbnail-@orientation">
-                <a href="@picture.WallLocation" title="@picture.Caption"><img class="thumbnail-@orientation" src="@picture.ThumbnailLocation" /> </a>
+                <a href="@picture.WallLocation" title="@picture.Caption" data-pid="@picture.Pid">
+                    <img class="thumbnail-@orientation" src="@picture.ThumbnailLocation" /> 
+                </a>
                 <figcaption>@picture.Caption</figcaption>
             </figure>
         </div>
@@ -66,6 +68,8 @@
             </div>
             <div class="modal-body">
                 <img id="classimg" class="img-fluid" src="" alt="" />
+                <br />
+                <div id="bio"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>              

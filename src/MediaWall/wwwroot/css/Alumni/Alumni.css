@@ -5,7 +5,7 @@ body{
 }
 
 .grid {
-    margin: 2em 0; /* allow some scroll space to allow grid items to appear above the navbar.*/
+    margin: 2em 0 9em; /* allow some scroll space to allow grid items to appear above the navbar.*/
 }
 
 .grid-item {
